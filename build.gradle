@@ -19,6 +19,14 @@ subprojects {
     }
 
     dependencies {
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
+        // https://mvnrepository.com/artifact/org.projectlombok/lombok
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        // https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api
+        implementation 'javax.annotation:javax.annotation-api:1.3.2'
+        // https://mvnrepository.com/artifact/log4j/log4j
+        implementation 'log4j:log4j:1.2.17'
+
         implementation "org.springframework:spring-context:$springVersion"
 
         testImplementation "org.springframework:spring-test:$springVersion"
