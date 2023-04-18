@@ -51,7 +51,9 @@ public class DataGenerator {
             author.setId((long) i);
             author.setName(name);
             authors.add(author);
-            author.setCreateDate(getRandomDate().minusDays(45));
+            LocalDateTime createDate = getRandomDate().minusDays(45);
+            author.setCreateDate(createDate);
+            author.setLastUpdateDate(createDate);
         }
     }
 
@@ -60,7 +62,6 @@ public class DataGenerator {
         for (int i = 1; i <= 20; i++) {
             LocalDateTime time = getRandomDate();
             Author author = authors.get(random.nextInt(authors.size()));
-            author.setLastUpdateDate(time);
             News news = ctx.getBean(News.class);
             news.setId((long) i);
             news.setTitle(getRandomStringFromFile(newsFileName));

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public class ControllerImpl implements BaseController<NewsDTORequest, NewsDTOResponse, Long> {
+public class NewsControllerImpl implements BaseController<NewsDTORequest, NewsDTOResponse, Long> {
     private final BaseService<NewsDTORequest, NewsDTOResponse, Long> manager;
 
     @Autowired
-    public ControllerImpl(NewsManagingServiceImpl manager) {
+    public NewsControllerImpl(NewsManagingServiceImpl manager) {
         this.manager = manager;
     }
 

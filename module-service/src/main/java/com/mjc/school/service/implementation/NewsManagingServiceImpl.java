@@ -7,10 +7,10 @@ import com.mjc.school.repository.model.News;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.NewsDTORequest;
 import com.mjc.school.service.dto.NewsDTOResponse;
-import com.mjc.school.service.exceptions.SearchAuthorException;
-import com.mjc.school.service.exceptions.SearchNewsException;
-import com.mjc.school.service.utils.NewsMapper;
-import com.mjc.school.service.utils.NewsRequestValidator;
+import com.mjc.school.service.exceptions.SearchException;
+import com.mjc.school.service.exceptions.ServiceErrorCode;
+import com.mjc.school.service.mapper.NewsMapper;
+import com.mjc.school.service.validator.NewsRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.mjc.school.service.utils.Constants.ERROR_MSG_AUTHOR_SEARCH;
-import static com.mjc.school.service.utils.Constants.ERROR_MSG_NEWS_SEARCH;
 
 @Service
 public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
@@ -51,16 +50,17 @@ public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
     @Override
     public NewsDTOResponse readById(Long id) {
         News news = newsDao.readById(id).orElseThrow(
-                () -> new SearchNewsException(ERROR_MSG_NEWS_SEARCH)
+                () -> new SearchException(String.format(
+                        ServiceErrorCode.NEWS_ID_DOES_NOT_EXIST.getMessage(), id))
         );
         return NewsMapper.INSTANCE.mapNews(news);
     }
 
     @Override
     public NewsDTOResponse create(NewsDTORequest req) {
-        requestValidator.validateNews(req);
+        requestValidator.validate(req);
         Author author = authorDao.readById(req.getAuthorId()).orElseThrow(
-                () -> new SearchAuthorException(ERROR_MSG_AUTHOR_SEARCH)
+                () -> new SearchException(ERROR_MSG_AUTHOR_SEARCH)
         );
         News news = ctx.getBean(News.class);
         news.setTitle(req.getTitle());
@@ -75,11 +75,11 @@ public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
 
     @Override
     public NewsDTOResponse update(NewsDTORequest req)  {
-        requestValidator.validateNews(req);
+        requestValidator.validate(req);
         News news = NewsMapper.INSTANCE.unmapNewsReq(req);
         readById(req.getId());
         Author author = authorDao.readById(req.getAuthorId()).orElseThrow(
-                () -> new SearchAuthorException(ERROR_MSG_AUTHOR_SEARCH)
+                () -> new SearchException(ERROR_MSG_AUTHOR_SEARCH)
         );
         news.setAuthor(author);
         News update = newsDao.update(news);

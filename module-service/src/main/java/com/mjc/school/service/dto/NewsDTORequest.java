@@ -15,10 +15,6 @@ public class NewsDTORequest {
     private String content;
     private long authorId;
 
-    public NewsDTORequest(Long id) {
-        this.id = id;
-    }
-
     public NewsDTORequest(String title, String content, Long authorId) {
         this.title = title;
         this.content = content;

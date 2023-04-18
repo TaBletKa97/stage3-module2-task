@@ -1,4 +1,4 @@
-package com.mjc.school.service.utils;
+package com.mjc.school.service.mapper;
 
 import com.mjc.school.repository.model.News;
 import com.mjc.school.service.dto.NewsDTORequest;
@@ -14,6 +14,8 @@ public interface NewsMapper {
 
     @Mapping(source = "author.id", target = "authorId")
     @Mapping(source = "author.name", target = "authorName")
+    @Mapping(source = "author.createDate", target = "authorCreateTime")
+    @Mapping(source = "author.lastUpdateDate", target = "authorLastUpdateTime")
     NewsDTOResponse mapNews(News newsModel);
 
     @Mapping(source = "authorId", target = "author.id")
@@ -21,5 +23,7 @@ public interface NewsMapper {
 
     @Mapping(source = "authorId", target = "author.id")
     @Mapping(source = "authorName", target = "author.name")
+    @Mapping(source = "authorCreateTime", target = "author.createDate")
+    @Mapping(source = "authorLastUpdateTime", target = "author.lastUpdateDate")
     News unmapNewsResp(NewsDTOResponse resp);
 }

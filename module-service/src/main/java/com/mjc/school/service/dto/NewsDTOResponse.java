@@ -19,4 +19,6 @@ public class NewsDTOResponse {
     private LocalDateTime lastUpdateDate;
     private long authorId;
     private String authorName;
+    private LocalDateTime authorCreateTime;
+    private LocalDateTime authorLastUpdateTime;
 }
