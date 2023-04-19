@@ -1,6 +1,6 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.implementation.AuthorRepositoryImpl;
+import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.Author;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.aop.anotations.OnDelete;
@@ -9,7 +9,6 @@ import com.mjc.school.service.dto.AuthorDTOResponse;
 import com.mjc.school.service.exceptions.SearchException;
 import com.mjc.school.service.exceptions.ServiceErrorCode;
 import com.mjc.school.service.mapper.AuthorMapper;
-import com.mjc.school.service.validator.AuthorRequestValidator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,13 +19,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class AuthorManagingServiceImpl implements BaseService<AuthorDTORequest, AuthorDTOResponse, Long> {
-    private final AuthorRepositoryImpl authorDao;
-    private final AuthorRequestValidator validator;
+    private final BaseRepository<Author, Long> authorDao;
 
-    public AuthorManagingServiceImpl(AuthorRepositoryImpl authorDao,
-                                     AuthorRequestValidator validator) {
+    public AuthorManagingServiceImpl(BaseRepository<Author, Long> authorDao) {
         this.authorDao = authorDao;
-        this.validator = validator;
     }
 
 
@@ -48,7 +44,6 @@ public class AuthorManagingServiceImpl implements BaseService<AuthorDTORequest, 
 
     @Override
     public AuthorDTOResponse create(AuthorDTORequest createRequest) {
-        validator.validate(createRequest);
         Author author = AuthorMapper.INSTANCE.unmapAuthorReq(createRequest);
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         author.setCreateDate(now);
@@ -62,7 +57,6 @@ public class AuthorManagingServiceImpl implements BaseService<AuthorDTORequest, 
 
     @Override
     public AuthorDTOResponse update(AuthorDTORequest updateRequest) {
-        validator.validate(updateRequest);
         AuthorDTOResponse old = readById(updateRequest.getId());
         Author newAuthor = AuthorMapper.INSTANCE.unmapAuthorReq(updateRequest);
         newAuthor.setCreateDate(old.getCreateDate());

@@ -1,6 +1,8 @@
 package com.mjc.school.commands.news;
 
-import com.mjc.school.controller.implementation.NewsControllerImpl;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.NewsDTORequest;
+import com.mjc.school.service.dto.NewsDTOResponse;
 import com.mjc.school.utils.Utils;
 
 import java.util.Scanner;
@@ -9,7 +11,7 @@ import static com.mjc.school.utils.Constants.TYPE_NEWS_ID;
 
 public class DeleteNewsCommand extends AbstractNewsCommand {
 
-    public DeleteNewsCommand(NewsControllerImpl controller) {
+    public DeleteNewsCommand(BaseController<NewsDTORequest, NewsDTOResponse, Long> controller) {
         super(controller);
     }
 

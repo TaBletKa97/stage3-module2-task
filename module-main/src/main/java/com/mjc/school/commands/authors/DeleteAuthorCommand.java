@@ -1,12 +1,15 @@
 package com.mjc.school.commands.authors;
 
-import com.mjc.school.controller.implementation.AuthorControllerImpl;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.AuthorDTORequest;
+import com.mjc.school.service.dto.AuthorDTOResponse;
 import com.mjc.school.utils.Utils;
 
 import java.util.Scanner;
 
 public class DeleteAuthorCommand extends AbstractAuthorCommand {
-    public DeleteAuthorCommand(AuthorControllerImpl controller) {
+
+    public DeleteAuthorCommand(BaseController<AuthorDTORequest, AuthorDTOResponse, Long> controller) {
         super(controller);
     }
 

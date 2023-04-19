@@ -4,7 +4,6 @@ import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.NewsDTORequest;
 import com.mjc.school.service.dto.NewsDTOResponse;
-import com.mjc.school.service.implementation.NewsManagingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -15,7 +14,7 @@ public class NewsControllerImpl implements BaseController<NewsDTORequest, NewsDT
     private final BaseService<NewsDTORequest, NewsDTOResponse, Long> manager;
 
     @Autowired
-    public NewsControllerImpl(NewsManagingServiceImpl manager) {
+    public NewsControllerImpl(BaseService<NewsDTORequest, NewsDTOResponse, Long> manager) {
         this.manager = manager;
     }
 

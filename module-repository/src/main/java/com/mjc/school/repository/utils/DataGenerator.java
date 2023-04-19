@@ -28,14 +28,12 @@ public class DataGenerator {
     private static final String newsFileName = "news";
     private static final String contentFileName = "content";
 
-    private final ApplicationContext ctx;
     @Getter
     private final List<Author> authors = new ArrayList<>();
     private final Random random;
 
     @Autowired
-    public DataGenerator(ApplicationContext ctx) {
-        this.ctx = ctx;
+    public DataGenerator() {
         this.random = new Random();
     }
 
@@ -47,7 +45,7 @@ public class DataGenerator {
                 i--;
                 continue;
             }
-            Author author = ctx.getBean(Author.class);
+            Author author = new Author();
             author.setId((long) i);
             author.setName(name);
             authors.add(author);
@@ -62,7 +60,7 @@ public class DataGenerator {
         for (int i = 1; i <= 20; i++) {
             LocalDateTime time = getRandomDate();
             Author author = authors.get(random.nextInt(authors.size()));
-            News news = ctx.getBean(News.class);
+            News news = new News();
             news.setId((long) i);
             news.setTitle(getRandomStringFromFile(newsFileName));
             news.setContent(getRandomStringFromFile(contentFileName));

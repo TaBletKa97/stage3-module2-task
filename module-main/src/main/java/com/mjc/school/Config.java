@@ -4,39 +4,28 @@ import com.mjc.school.commands.BaseCommand;
 import com.mjc.school.commands.ShutdownCommand;
 import com.mjc.school.commands.authors.*;
 import com.mjc.school.commands.news.*;
-import com.mjc.school.controller.implementation.AuthorControllerImpl;
-import com.mjc.school.controller.implementation.NewsControllerImpl;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.AuthorDTORequest;
+import com.mjc.school.service.dto.AuthorDTOResponse;
+import com.mjc.school.service.dto.NewsDTORequest;
+import com.mjc.school.service.dto.NewsDTOResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan("com.mjc.school")
 public class Config {
 
     @Bean
-    public Logger logger() {
-        Logger log = Logger.getLogger("myLog");
-        log.setLevel(Level.ALL);
-        FileAppender appender = new FileAppender();
-        appender.setFile("module-main/src/main/resources/logs.log");
-        appender.setLayout(new PatternLayout("%d [%p, %C] %m;%n"));
-        appender.activateOptions();
-        Logger.getRootLogger().addAppender(appender);
-        return log;
-    }
-
-    @Bean
-    public Map<String, BaseCommand> commands(NewsControllerImpl newsController,
-                                             AuthorControllerImpl authorController) {
+    public Map<String, BaseCommand> commands(BaseController<NewsDTORequest, NewsDTOResponse, Long> newsController,
+                                             BaseController<AuthorDTORequest, AuthorDTOResponse, Long> authorController) {
         Map<String, BaseCommand> commandMap = new HashMap<>();
         commandMap.put("1", new GetAllNewsCommand(newsController));
         commandMap.put("2", new GetNewsByIdCommand(newsController));

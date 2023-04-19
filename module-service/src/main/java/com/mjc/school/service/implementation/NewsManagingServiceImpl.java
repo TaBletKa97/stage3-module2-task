@@ -1,7 +1,6 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.repository.implementation.AuthorRepositoryImpl;
-import com.mjc.school.repository.implementation.NewsRepositoryImpl;
+import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.Author;
 import com.mjc.school.repository.model.News;
 import com.mjc.school.service.BaseService;
@@ -10,9 +9,7 @@ import com.mjc.school.service.dto.NewsDTOResponse;
 import com.mjc.school.service.exceptions.SearchException;
 import com.mjc.school.service.exceptions.ServiceErrorCode;
 import com.mjc.school.service.mapper.NewsMapper;
-import com.mjc.school.service.validator.NewsRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,19 +22,14 @@ import static com.mjc.school.service.utils.Constants.ERROR_MSG_AUTHOR_SEARCH;
 @Service
 public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
         NewsDTOResponse, Long> {
-    private final ApplicationContext ctx;
-    private final NewsRepositoryImpl newsDao;
-    private final AuthorRepositoryImpl authorDao;
-    private final NewsRequestValidator requestValidator;
+    private final BaseRepository<News, Long> newsDao;
+    private final BaseRepository<Author, Long> authorDao;
 
     @Autowired
-    public NewsManagingServiceImpl(ApplicationContext ctx, NewsRepositoryImpl newsDao,
-                                   AuthorRepositoryImpl authorDao,
-                                   NewsRequestValidator requestValidator) {
-        this.ctx = ctx;
+    public NewsManagingServiceImpl(BaseRepository<News, Long> newsDao,
+                                   BaseRepository<Author, Long> authorDao) {
         this.newsDao = newsDao;
         this.authorDao = authorDao;
-        this.requestValidator = requestValidator;
     }
 
     @Override
@@ -58,11 +50,10 @@ public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
 
     @Override
     public NewsDTOResponse create(NewsDTORequest req) {
-        requestValidator.validate(req);
         Author author = authorDao.readById(req.getAuthorId()).orElseThrow(
                 () -> new SearchException(ERROR_MSG_AUTHOR_SEARCH)
         );
-        News news = ctx.getBean(News.class);
+        News news = new News();
         news.setTitle(req.getTitle());
         news.setContent(req.getContent());
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
@@ -75,7 +66,6 @@ public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
 
     @Override
     public NewsDTOResponse update(NewsDTORequest req)  {
-        requestValidator.validate(req);
         News news = NewsMapper.INSTANCE.unmapNewsReq(req);
         readById(req.getId());
         Author author = authorDao.readById(req.getAuthorId()).orElseThrow(

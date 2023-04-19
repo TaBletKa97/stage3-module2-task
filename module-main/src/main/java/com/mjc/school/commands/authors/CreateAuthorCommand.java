@@ -1,6 +1,6 @@
 package com.mjc.school.commands.authors;
 
-import com.mjc.school.controller.implementation.AuthorControllerImpl;
+import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;
 
@@ -10,7 +10,8 @@ import static com.mjc.school.utils.Constants.AUTHOR_CREATED;
 import static com.mjc.school.utils.Constants.TYPE_A_NAME;
 
 public class CreateAuthorCommand extends AbstractAuthorCommand {
-    public CreateAuthorCommand(AuthorControllerImpl controller) {
+
+    public CreateAuthorCommand(BaseController<AuthorDTORequest, AuthorDTOResponse, Long> controller) {
         super(controller);
     }
 

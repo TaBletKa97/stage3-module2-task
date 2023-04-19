@@ -1,18 +1,18 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;
-import com.mjc.school.service.implementation.AuthorManagingServiceImpl;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
 @Controller
 public class AuthorControllerImpl implements BaseController<AuthorDTORequest, AuthorDTOResponse, Long> {
-    private final AuthorManagingServiceImpl authorManagingService;
+    private final BaseService<AuthorDTORequest, AuthorDTOResponse, Long> authorManagingService;
 
-    public AuthorControllerImpl(AuthorManagingServiceImpl authorManagingService) {
+    public AuthorControllerImpl(BaseService<AuthorDTORequest, AuthorDTOResponse, Long> authorManagingService) {
         this.authorManagingService = authorManagingService;
     }
 

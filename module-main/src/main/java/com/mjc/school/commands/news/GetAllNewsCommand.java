@@ -1,12 +1,14 @@
 package com.mjc.school.commands.news;
 
-import com.mjc.school.controller.implementation.NewsControllerImpl;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.NewsDTORequest;
+import com.mjc.school.service.dto.NewsDTOResponse;
 
 import java.util.Scanner;
 
 public class GetAllNewsCommand extends AbstractNewsCommand {
 
-    public GetAllNewsCommand(NewsControllerImpl controller) {
+    public GetAllNewsCommand(BaseController<NewsDTORequest, NewsDTOResponse, Long> controller) {
         super(controller);
     }
 

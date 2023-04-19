@@ -1,12 +1,13 @@
 package com.mjc.school.commands.authors;
 
-import com.mjc.school.controller.implementation.AuthorControllerImpl;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.AuthorDTORequest;
+import com.mjc.school.service.dto.AuthorDTOResponse;
 
 import java.util.Scanner;
 
 public class GetAllAuthorsCommand extends AbstractAuthorCommand {
-
-    public GetAllAuthorsCommand(AuthorControllerImpl controller) {
+    public GetAllAuthorsCommand(BaseController<AuthorDTORequest, AuthorDTOResponse, Long> controller) {
         super(controller);
     }
 

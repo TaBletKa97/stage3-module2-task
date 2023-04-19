@@ -1,6 +1,8 @@
 package com.mjc.school.commands.authors;
 
-import com.mjc.school.controller.implementation.AuthorControllerImpl;
+import com.mjc.school.controller.BaseController;
+import com.mjc.school.service.dto.AuthorDTORequest;
+import com.mjc.school.service.dto.AuthorDTOResponse;
 import com.mjc.school.utils.Utils;
 
 import java.util.Scanner;
@@ -9,7 +11,7 @@ import static com.mjc.school.utils.Constants.TYPE_AUTHOR_ID;
 
 public class GetAuthorByIdCommand extends AbstractAuthorCommand {
 
-    public GetAuthorByIdCommand(AuthorControllerImpl controller) {
+    public GetAuthorByIdCommand(BaseController<AuthorDTORequest, AuthorDTOResponse, Long> controller) {
         super(controller);
     }
 

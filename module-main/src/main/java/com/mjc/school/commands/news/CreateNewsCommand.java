@@ -1,6 +1,6 @@
 package com.mjc.school.commands.news;
 
-import com.mjc.school.controller.implementation.NewsControllerImpl;
+import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.dto.NewsDTORequest;
 import com.mjc.school.service.dto.NewsDTOResponse;
 import com.mjc.school.utils.Utils;
@@ -11,7 +11,7 @@ import static com.mjc.school.utils.Constants.*;
 
 public class CreateNewsCommand extends AbstractNewsCommand {
 
-    public CreateNewsCommand(NewsControllerImpl controller) {
+    public CreateNewsCommand(BaseController<NewsDTORequest, NewsDTOResponse, Long> controller) {
         super(controller);
     }
 
