@@ -1,4 +1,4 @@
-package com.mjc.school.commands;
+package com.mjc.school.controller.commands;
 
 import java.util.Scanner;
 

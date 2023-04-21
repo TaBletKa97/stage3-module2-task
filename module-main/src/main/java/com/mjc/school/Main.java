@@ -1,6 +1,6 @@
 package com.mjc.school;
 
-import com.mjc.school.menu.Menu;
+import com.mjc.school.controller.menu.Menu;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {

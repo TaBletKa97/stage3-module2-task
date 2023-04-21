@@ -1,6 +1,6 @@
-package com.mjc.school.commands.authors;
+package com.mjc.school.controller.commands.authors;
 
-import com.mjc.school.commands.BaseCommand;
+import com.mjc.school.controller.commands.BaseCommand;
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;

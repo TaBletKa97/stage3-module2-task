@@ -1,13 +1,12 @@
-package com.mjc.school.commands.authors;
+package com.mjc.school.controller.commands.authors;
 
 import com.mjc.school.controller.BaseController;
+import com.mjc.school.controller.utils.Constants;
+import com.mjc.school.controller.utils.Utils;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;
-import com.mjc.school.utils.Utils;
 
 import java.util.Scanner;
-
-import static com.mjc.school.utils.Constants.*;
 
 public class UpdateAuthorCommand extends AbstractAuthorCommand {
 
@@ -17,14 +16,14 @@ public class UpdateAuthorCommand extends AbstractAuthorCommand {
 
     @Override
     public void execute(Scanner sc) {
-        long id = Utils.getLongFromScanner(sc, TYPE_AUTHOR_ID);
-        System.out.println(TYPE_A_NEW_NAME);
+        long id = Utils.getLongFromScanner(sc, Constants.TYPE_AUTHOR_ID);
+        System.out.println(Constants.TYPE_A_NEW_NAME);
         String newName = sc.nextLine();
         AuthorDTORequest request = new AuthorDTORequest();
         request.setId(id);
         request.setName(newName);
         AuthorDTOResponse update = controller.update(request);
-        System.out.println(AUTHOR_UPDATED);
+        System.out.println(Constants.AUTHOR_UPDATED);
         System.out.println(update);
     }
 

@@ -1,6 +1,6 @@
-package com.mjc.school.menu;
+package com.mjc.school.controller.menu;
 
-import com.mjc.school.commands.BaseCommand;
+import com.mjc.school.controller.commands.BaseCommand;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static com.mjc.school.utils.Constants.INCORRECT_VALUE;
+import static com.mjc.school.controller.utils.Constants.INCORRECT_VALUE;
 
 @Component
 public class Menu {

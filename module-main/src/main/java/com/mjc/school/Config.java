@@ -1,14 +1,14 @@
 package com.mjc.school;
 
-import com.mjc.school.commands.BaseCommand;
-import com.mjc.school.commands.ShutdownCommand;
-import com.mjc.school.commands.authors.*;
-import com.mjc.school.commands.news.*;
+import com.mjc.school.controller.commands.BaseCommand;
+import com.mjc.school.controller.commands.ShutdownCommand;
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.service.dto.AuthorDTORequest;
-import com.mjc.school.service.dto.AuthorDTOResponse;
-import com.mjc.school.service.dto.NewsDTORequest;
-import com.mjc.school.service.dto.NewsDTOResponse;
+import com.mjc.school.controller.commands.authors.*;
+import com.mjc.school.controller.commands.news.*;
+import com.mjc.school.controller.implementation.AuthorControllerImpl;
+import com.mjc.school.controller.implementation.NewsControllerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +24,8 @@ import java.util.Scanner;
 public class Config {
 
     @Bean
-    public Map<String, BaseCommand> commands(BaseController<NewsDTORequest, NewsDTOResponse, Long> newsController,
-                                             BaseController<AuthorDTORequest, AuthorDTOResponse, Long> authorController) {
+    public Map<String, BaseCommand> commands(NewsControllerImpl newsController,
+                                             AuthorControllerImpl authorController) {
         Map<String, BaseCommand> commandMap = new HashMap<>();
         commandMap.put("1", new GetAllNewsCommand(newsController));
         commandMap.put("2", new GetNewsByIdCommand(newsController));

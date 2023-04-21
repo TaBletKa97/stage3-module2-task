@@ -1,4 +1,4 @@
-package com.mjc.school.utils;
+package com.mjc.school.controller.utils;
 
 public class Constants {
     public static final String TYPE_TITLE = "Type a title:";

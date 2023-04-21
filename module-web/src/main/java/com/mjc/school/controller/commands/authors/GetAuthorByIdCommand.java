@@ -1,13 +1,13 @@
-package com.mjc.school.commands.authors;
+package com.mjc.school.controller.commands.authors;
 
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;
-import com.mjc.school.utils.Utils;
+import com.mjc.school.controller.utils.Utils;
 
 import java.util.Scanner;
 
-import static com.mjc.school.utils.Constants.TYPE_AUTHOR_ID;
+import static com.mjc.school.controller.utils.Constants.TYPE_AUTHOR_ID;
 
 public class GetAuthorByIdCommand extends AbstractAuthorCommand {
 

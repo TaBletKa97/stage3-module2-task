@@ -1,9 +1,7 @@
-package com.mjc.school.utils;
+package com.mjc.school.controller.utils;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import static com.mjc.school.utils.Constants.INCORRECT_VALUE;
 
 public class Utils {
 
@@ -16,7 +14,7 @@ public class Utils {
                 selectedVariant = sc.nextLong();
                 isLong = true;
             } catch (NoSuchElementException e) {
-                System.err.println(INCORRECT_VALUE);
+                System.err.println(Constants.INCORRECT_VALUE);
                 selectedVariant = 0;
             } finally {
                 sc.nextLine();
