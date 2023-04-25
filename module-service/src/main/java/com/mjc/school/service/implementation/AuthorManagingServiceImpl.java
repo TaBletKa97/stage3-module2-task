@@ -9,6 +9,7 @@ import com.mjc.school.service.dto.AuthorDTOResponse;
 import com.mjc.school.service.exceptions.SearchException;
 import com.mjc.school.service.exceptions.ServiceErrorCode;
 import com.mjc.school.service.mapper.AuthorMapper;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@DependsOn("authorRepositoryImpl")
 public class AuthorManagingServiceImpl implements BaseService<AuthorDTORequest, AuthorDTOResponse, Long> {
     private final BaseRepository<Author, Long> authorDao;
 

@@ -4,11 +4,13 @@ import com.mjc.school.controller.BaseController;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.AuthorDTORequest;
 import com.mjc.school.service.dto.AuthorDTOResponse;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
 @Controller
+@DependsOn("authorManagingServiceImpl")
 public class AuthorControllerImpl implements BaseController<AuthorDTORequest, AuthorDTOResponse, Long> {
     private final BaseService<AuthorDTORequest, AuthorDTOResponse, Long> authorManagingService;
 

@@ -10,6 +10,7 @@ import com.mjc.school.service.exceptions.SearchException;
 import com.mjc.school.service.exceptions.ServiceErrorCode;
 import com.mjc.school.service.mapper.NewsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 import static com.mjc.school.service.utils.Constants.ERROR_MSG_AUTHOR_SEARCH;
 
 @Service
+@DependsOn("newsRepositoryImpl")
 public class NewsManagingServiceImpl implements BaseService<NewsDTORequest,
         NewsDTOResponse, Long> {
     private final BaseRepository<News, Long> newsDao;
