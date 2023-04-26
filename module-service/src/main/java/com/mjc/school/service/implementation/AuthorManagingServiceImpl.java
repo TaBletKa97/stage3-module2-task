@@ -9,6 +9,7 @@ import com.mjc.school.service.dto.AuthorDTOResponse;
 import com.mjc.school.service.exceptions.SearchException;
 import com.mjc.school.service.exceptions.ServiceErrorCode;
 import com.mjc.school.service.mapper.AuthorMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class AuthorManagingServiceImpl implements BaseService<AuthorDTORequest, AuthorDTOResponse, Long> {
     private final BaseRepository<Author, Long> authorDao;
 
+    @Autowired
     public AuthorManagingServiceImpl(BaseRepository<Author, Long> authorDao) {
         this.authorDao = authorDao;
     }
