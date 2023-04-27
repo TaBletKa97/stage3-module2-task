@@ -21,8 +21,8 @@ public class DeleteAspect {
     private final BaseRepository<News, Long> newsDao;
 
     @Autowired
-    public DeleteAspect(Scanner sc, NewsRepositoryImpl newsDao) {
-        this.sc = sc;
+    public DeleteAspect(NewsRepositoryImpl newsDao) {
+        this.sc = new Scanner(System.in);
         this.newsDao = newsDao;
     }
 
